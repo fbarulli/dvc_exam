@@ -1,0 +1,15 @@
+stages:
+  evaluate:
+    cmd: python dvc/examen-dvc/src/data/model_eval.py
+    deps:
+      - dvc/examen-dvc/src/data/model_eval.py
+      - dvc/examen-dvc/data/processed/X_train_normalized.csv
+      - dvc/examen-dvc/data/processed/X_test_normalized.csv
+      - dvc/examen-dvc/data/processed/y_train.csv
+      - dvc/examen-dvc/data/processed/y_test.csv
+      - dvc/examen-dvc/models/best_ridge_params.pkl
+    outs:
+      - dvc/examen-dvc/data/processed/predictions.csv
+    metrics:
+      - dvc/examen-dvc/metrics/scores.json:
+          cache: false
